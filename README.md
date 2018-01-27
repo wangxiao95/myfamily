@@ -2,19 +2,19 @@
 
 # 运行步骤
 
-# download 项目
+> download 项目
  git clone https://github.com/wangxiao95/myfamily.git
 
-#
+>
  cd myfamily
 
-# 安装以来
+> 安装依赖
  npm install
 
-# webpack打包并在本地服务器运行
+> webpack打包并在本地服务器运行
  npm run dev
 
-> A Vue.js project
+
 
 ## Build Setup
 
