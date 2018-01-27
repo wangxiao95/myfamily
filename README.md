@@ -1,5 +1,15 @@
 # myfamily
 
+# 运行步骤
+
+# git clone https://github.com/wangxiao95/myfamily.git
+
+# cd myfamily
+
+# npm install
+
+# npm run dev
+
 > A Vue.js project
 
 ## Build Setup
