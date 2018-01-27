@@ -2,18 +2,19 @@
 
 # 运行步骤
 
-> download 项目
+``` bash
+# download 项目
  git clone https://github.com/wangxiao95/myfamily.git
 
->
+# 切换工作目录
  cd myfamily
 
-> 安装依赖
+# 安装以来
  npm install
 
-> webpack打包并在本地服务器运行
+# webpack打包并在本地服务器运行
  npm run dev
-
+```
 
 
 ## Build Setup
