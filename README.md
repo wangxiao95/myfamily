@@ -2,13 +2,13 @@
 
 # 运行步骤
 
-# git clone https://github.com/wangxiao95/myfamily.git
+ git clone https://github.com/wangxiao95/myfamily.git
 
-# cd myfamily
+ cd myfamily
 
-# npm install
+ npm install
 
-# npm run dev
+ npm run dev
 
 > A Vue.js project
 
