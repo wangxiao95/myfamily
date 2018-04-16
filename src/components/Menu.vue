@@ -1,39 +1,58 @@
 <template>
-  <el-row>
-    <el-col :xs="2" :sm="24">
-      <el-menu
-        :default-active="activeIndex2"
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b">
-        <el-menu-item index="1">首页</el-menu-item>
-        <el-submenu index="2">
-          <template slot="title">我的工作台</template>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2">选项2</el-menu-item>
-          <el-menu-item index="2-3">选项3</el-menu-item>
-        </el-submenu>
-        <el-menu-item index="3">个人中心</el-menu-item>
-      </el-menu>
-    </el-col>
-  </el-row>
+  <Menu mode="horizontal" theme="dark" active-name="1" @on-selected="menuChange">
+    <div class="layout-logo"></div>
+    <div class="layout-nav" v-for="(item, index) in menuList">
+      <MenuItem :name="item.name">
+        <Icon type="ios-navigate"></Icon>
+        {{item.text}}
+      </MenuItem>
+    </div>
+  </Menu>
 </template>
 
 <script>
   export default {
     data() {
       return {
-        activeIndex: '1',
-        activeIndex2: '1'
+        menuList: [
+          {text: '创建图谱', url: '', name: '1'},
+          {text: '家族图谱', url: '', name: '2'},
+          {text: '系统管理', url: '', name: '3'}
+        ]
       };
     },
     methods: {
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+      menuChange () {
+        // alert(1)
       }
     }
   }
 </script>
+
+<style>
+  .layout{
+    border: 1px solid #d7dde4;
+    background: #f5f7f9;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .layout-logo{
+    width: 100px;
+    height: 30px;
+    background: #5b6270;
+    border-radius: 3px;
+    float: left;
+    position: relative;
+    top: 15px;
+    left: 20px;
+  }
+  .layout-nav{
+    width: 420px;
+    margin: 0 auto;
+    margin-right: 20px;
+  }
+  .layout-footer-center{
+    text-align: center;
+  }
+</style>

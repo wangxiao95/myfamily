@@ -1,59 +1,75 @@
 <template>
-  <el-row>
-    <el-col :lg="24" class="login-box">
-      <el-row>
-        <el-col :lg="6">
-          <div>
-            账号：
-            <el-input
-              placeholder="请输入内容"
-              v-model="input10"
-              clearable>
-            </el-input>
-          </div>
-          <div>
-            <div @click="goQuery">密码：</div>
-            <el-input
-              placeholder="请输入内容"
-              v-model="input10"
-              clearable>
-            </el-input>
-          </div>
-        </el-col>
-      </el-row>
-    </el-col>
-    <el-col>
-      <Banner></Banner>
-    </el-col>
-  </el-row>
+  <div class="page">
+    <div class="login-box">
+      <div class="input-box">
+        <div class="row">
+          <label>用户名:</label>
+          <Input v-model="userName" clearable size="large" clearable style="width: 300px" placeholder="请输入用户名"/>
+        </div>
+        <div class="row">
+          <label>密码:</label>
+          <Input v-model="password" clearable size="large" clearable style="width: 300px" placeholder="请输入密码"/>
+        </div>
+        <div class="row">
+          <Button type="primary" @click="login">登录</Button>
+          <Button type="ghost" @click="register">注册</Button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-  import Banner from '../components/Banner'
   export default {
     data () {
       return {
-        input10: ''
+        userName: '',
+        password: ''
       }
     },
     components: {
-      Banner
+
     },
     methods: {
-      goQuery () {
-        this.$router.push('/QueryDetail')
+      login () {
+        this.$router.push({path: '/Home'})
+      },
+      register () {
+        // this.$router.push({name: '/register'})
       }
     }
   }
 </script>
 
 <style>
-  .login-box{
-    position: relative;
-    z-index: 99;
-    border: 1px solid #007aff;
-    padding: 100px 50px;
-    background-color: #007aff;
-    opacity: .5;
+  .page{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: url("../assets/img/1.jpg") no-repeat;
   }
+  .login-box{
+    display: flex;
+    justify-content:center;
+    /*align-items: center;*/
+    width: 30%;
+    height: 30%;
+    border: 1px solid;
+    padding: 30px;
+    background: rgba(255,255,255,.2);
+    /*opacity: .2;*/
+  }
+  .row{
+    height: 30px;
+    margin-top: 30px;
+  }
+  .row label{
+    display: inline-block;
+    width: 50px;
+    fone-size: 14px;
+    text-align: right;
+  }
+
 </style>

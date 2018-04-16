@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/pages/Login'
-import Banner from '@/components/Banner'
-import QueryDetail from '@/pages/QueryDetail'
+import Home from '@/pages/Home'
+import Main from '@/pages/Main'
 
 Vue.use(Router)
 
@@ -11,19 +11,18 @@ export default new Router({
     {
       path: '/',
       name: 'Login',
-      component: Login,
-      children: [
-        {
-          path: 'Banner',
-          name: 'Banner',
-          component: Banner
-        }
-      ]
+      component: Login
     },
     {
-      path: '/QueryDetail',
-      name: 'QueryDetail',
-      component: QueryDetail
+      path: '/Home',
+      component: Home,
+      children: [
+        {
+          path: '/',
+          name: 'Main',
+          component: Main
+        }
+      ]
     }
   ]
 })
