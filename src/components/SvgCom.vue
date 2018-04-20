@@ -13,8 +13,9 @@
           <text x="130" y="45" fill="black" @click="test">50</text>
           <circle cx="75" cy="60" r="10" stroke="black" stroke-width="0" fill="#fff"/>
           <circle cx="75" cy="60" r="8" stroke="black" stroke-width="0" fill="#5cadff" @click="showModal"/>
-          <line x1="70" y1="60" x2="80" y2="60" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal"/>
-          <line x1="75" y1="55" x2="75" y2="65" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal"/>
+          <!--<line x1="70" y1="60" x2="80" y2="60" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal"/>-->
+          <!--<line x1="75" y1="55" x2="75" y2="65" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal"/>-->
+          <path d="M70 60 L80 60 M75 55 L75 65" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal"></path>
         </g>
         <g v-else v-for="(item, i) in val" :transform="getTransform(key, i)">
           <rect x="0" y="0" rx="5" ry="5" width="150" height="60" :fill="bgColor[item.sex]" @click="test"
@@ -26,8 +27,7 @@
           <text x="130" y="45" fill="black" @click="test">50</text>
           <circle cx="75" cy="60" r="10" stroke="black" stroke-width="0" fill="#fff"/>
           <circle cx="75" cy="60" r="8" stroke="black" stroke-width="0" fill="#5cadff" @click="showModal(item.name)"/>
-          <line x1="70" y1="60" x2="80" y2="60" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal(item.name)"/>
-          <line x1="75" y1="55" x2="75" y2="65" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal(item.name)"/>
+          <path d="M70 60 L80 60 M75 55 L75 65" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal"></path>
         </g>
       </g>
     </svg>
