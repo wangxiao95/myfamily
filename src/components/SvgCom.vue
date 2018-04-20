@@ -1,6 +1,7 @@
 <template>
   <div class="box" id="box">
-    <svg preserveAspectRatio="xMinYMin meet" viewBox="300,300,1000,800" @mousemove="move" @mousedown="getPoint">
+    <svg :class="svgMouseDown ? 'poi' : ''" preserveAspectRatio="xMinYMin meet" :viewBox="viewBox"
+         @mousemove="move" @mousedown="getPoint" @mouseup="moveOff">
       <g v-for="(val, key) in self.relationship">
         <g v-if="!Array.isArray(val)" :transform="getTransform(key)">
           <rect x="0" y="0" rx="5" ry="5" width="150" height="60" :fill="bgColor[val.sex]" @click="test"
@@ -40,8 +41,16 @@ import AddModal from '../components/AddModal'
 export default {
   data () {
     return {
+      // svg viewBox 四个属性值
       svgX: 0,
       svgY: 0,
+      viewBoxX: 1000,
+      viewBoxY: 800,
+      //暂存鼠标down的点坐标
+      offSetX: 0,
+      offSetY: 0,
+      //svgMouseDown鼠标按下抬起标志
+      svgMouseDown: false,
       //以自己为中心的初始坐标
       x: 400,
       y: 300,
@@ -60,7 +69,6 @@ export default {
         flag: false,
         title: ''
       },
-
       //数据
       self: {
         name: '本人',
@@ -99,7 +107,9 @@ export default {
     }
   },
   computed: {
-
+    viewBox () {
+      return this.svgX + ',' + this.svgY + ',' + this.viewBoxX + ',' + this.viewBoxY;
+    }
   },
   methods: {
     test (a) {
@@ -158,13 +168,39 @@ export default {
       this.self.relationship[data.ship].push(data);
     },
     move (e) {
-      this.svgX += 10
-      this.svgY += 10
+      if (this.offSetY != 0) {
+        this.svgX = this.offSetX - e.offsetX;
+        this.svgY = this.offSetY - e.offsetY;
+        // debugger
+      }
     },
     getPoint (e) {
-      console.log(e.offsetX)
-      console.log(e.offsetY)
-    }
+      this.svgMouseDown = true;
+      this.offSetX = e.offsetX + this.svgX;
+      this.offSetY = e.offsetY + this.svgY;
+    },
+    moveOff () {
+      this.offSetY = 0;
+      this.svgMouseDown = false;
+      // return false;
+    },
+    // keyMove (e) {
+    //   console.log(e);
+    //   switch (e.keyCode) {
+    //     case 37:
+    //       this.svgX --;
+    //       break;
+    //     case 38:
+    //       this.svgY --;
+    //       break;
+    //     case 39:
+    //       this.svgX ++;
+    //       break;
+    //     case 40:
+    //       this.svgY ++;
+    //       break;
+    //   }
+    // }
   },
   watch: {
     t () {
@@ -188,8 +224,5 @@ export default {
       width: 100%;
       height: 100%;
     }
-  }
-  svg{
-
   }
 </style>
