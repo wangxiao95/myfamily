@@ -1,5 +1,8 @@
 <template>
   <div class="box" id="box">
+    <div class="svg-zoom">
+
+    </div>
     <svg :class="svgMouseDown ? 'poi' : ''" preserveAspectRatio="xMinYMin meet" :viewBox="viewBox"
          @mousemove="move" @mousedown="getPoint" @mouseup="moveOff">
       <g v-for="(val, key) in self.relationship">
@@ -219,6 +222,7 @@ export default {
 
 <style scoped lang="less">
   .box{
+    position: relative;
     float: left;
     width: 70%;
     height: 800px;
@@ -227,6 +231,14 @@ export default {
     svg{
       width: 100%;
       height: 100%;
+    }
+    .svg-zoom{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 150px;
+      border: 1px solid red;
     }
   }
 </style>
