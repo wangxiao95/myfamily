@@ -4,13 +4,13 @@
          @mousemove="move" @mousedown="getPoint" @mouseup="moveOff">
       <g v-for="(val, key) in self.relationship">
         <g v-if="!Array.isArray(val)" :transform="getTransform(key)">
-          <rect x="0" y="0" rx="5" ry="5" width="150" height="60" :fill="bgColor[val.sex]" @click="test"
+          <rect x="0" y="0" rx="5" ry="5" width="150" height="60" :fill="bgColor[val.sex]" @click="test(val.name)"
                 style="stroke:black;stroke-width:0;"/>
           <image x="10" y="10" xlink:href="../assets/img/3.jpg" width="40" height="40"/>
           <text x="70" y="25" fill="black">{{val.name}}</text>
-          <text x="130" y="25" fill="black" @click="test">{{sex[val.sex]}}</text>
-          <text x="70" y="45" fill="black" @click="test">{{key}}</text>
-          <text x="130" y="45" fill="black" @click="test">50</text>
+          <text x="130" y="25" fill="black">{{sex[val.sex]}}</text>
+          <text x="70" y="45" fill="black">{{key}}</text>
+          <text x="130" y="45" fill="black">50</text>
           <circle cx="75" cy="60" r="10" stroke="black" stroke-width="0" fill="#fff"/>
           <circle cx="75" cy="60" r="8" stroke="black" stroke-width="0" fill="#5cadff" @click="showModal"/>
           <!--<line x1="70" y1="60" x2="80" y2="60" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal"/>-->
@@ -18,13 +18,13 @@
           <path d="M70 60 L80 60 M75 55 L75 65" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal"></path>
         </g>
         <g v-else v-for="(item, i) in val" :transform="getTransform(key, i)">
-          <rect x="0" y="0" rx="5" ry="5" width="150" height="60" :fill="bgColor[item.sex]" @click="test"
+          <rect x="0" y="0" rx="5" ry="5" width="150" height="60" :fill="bgColor[item.sex]" @click="test(item.name)"
                 style="stroke:black;stroke-width:0;"/>
           <image x="10" y="10" xlink:href="../assets/img/3.jpg" width="40" height="40"/>
           <text x="70" y="25" fill="black">{{item.name}}</text>
-          <text x="130" y="25" fill="black" @click="test">{{sex[item.sex]}}</text>
-          <text x="70" y="45" fill="black" @click="test">{{key}}</text>
-          <text x="130" y="45" fill="black" @click="test">50</text>
+          <text x="130" y="25" fill="black">{{sex[item.sex]}}</text>
+          <text x="70" y="45" fill="black">{{key}}</text>
+          <text x="130" y="45" fill="black">50</text>
           <circle cx="75" cy="60" r="10" stroke="black" stroke-width="0" fill="#fff"/>
           <circle cx="75" cy="60" r="8" stroke="black" stroke-width="0" fill="#5cadff" @click="showModal(item.name)"/>
           <path d="M70 60 L80 60 M75 55 L75 65" style="stroke:rgb(255,255,255);stroke-width:2" @click="showModal"></path>
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import AddModal from '../components/AddModal'
 export default {
   data () {
@@ -112,9 +113,12 @@ export default {
     }
   },
   methods: {
-    test (a) {
-      console.log(a)
-      alert(a)
+    ...mapActions([
+      'change'
+    ]),
+    test (name) {
+      this.change(name);
+      console.log(this.$store.state.crumbs);
 
     },
     //计算每个item的x坐标
